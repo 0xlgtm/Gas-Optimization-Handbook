@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.22;
 
-import {Test, console2} from "forge-std/Test.sol";
+import {Test} from "forge-std/Test.sol";
 import {ColdAccess, ColdAndWarmAccess} from "../src/ColdVsWarm.sol";
 
 // forge test --match-contract ColdVsWarmTest --gas-report
