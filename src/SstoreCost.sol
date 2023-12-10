@@ -41,5 +41,4 @@ contract MultipleSstores {
         x -= 1;
         x -= 1;
     }
-
 }
