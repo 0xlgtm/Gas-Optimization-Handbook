@@ -5,6 +5,7 @@ contract ZeroToNonZero {
     uint256 public x;
 
     // Costs 20k + 2.1k gas
+    // 2.1k is for the cold access
     function setX() public {
         x = 1;
     }
@@ -14,6 +15,7 @@ contract NonZeroToDiffNonZero {
     uint256 public x = 1;
 
     // Costs 2.9k + 2.1k gas
+    // 2.1k is for the cold access
     function setX() public {
         x = 2;
     }
@@ -23,6 +25,7 @@ contract NonZeroToSameNonZero {
     uint256 public x = 1;
 
     // Costs 100 + 2.1k gas
+    // 2.1k is for the cold access
     function setX() public {
         x = 1;
     }
@@ -33,7 +36,8 @@ contract MultipleSstores {
 
     // Since the compiler's optimization is turned on,
     // it knows to skip the first 2 assignments.
-    // If you want to see subsequent SSTOREs costing 100,
+    // If you want to see the unoptimized cost
+    // i.e. 2.9k + 2.1k + 100 + 100
     // turn off optimizations and run the command
     // `forge debug src/SstoreCost.sol --tc "MultipleSstores" --sig "setX()"`
     function setX() public {
