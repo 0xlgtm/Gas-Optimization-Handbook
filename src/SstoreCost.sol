@@ -15,7 +15,7 @@ contract NonZeroToDiffNonZero {
 
     // Costs 2.9k + 2.1k gas
     function setX() public {
-        x = x + 1;
+        x = 2;
     }
 }
 
@@ -24,21 +24,21 @@ contract NonZeroToSameNonZero {
 
     // Costs 100 + 2.1k gas
     function setX() public {
-        // You need to do this otherwise the compiler
-        // will optimize and remove the SSTORE
-        x = x + 1 - 1;
+        x = 1;
     }
 }
 
 contract MultipleSstores {
     uint256 public x = 1;
 
-    // Costs 2.9k (first SSTORE) + 2.1k (first SLOAD) +
-    // 100 (second SSTORE) + 100 (second SLOAD) +
-    // 100 (third SSTORE) + 100 (third SLOAD)
+    // Since the compiler's optimization is turned on,
+    // it knows to skip the first 2 assignments.
+    // If you want to see subsequent SSTOREs costing 100,
+    // turn off optimizations and run the command
+    // `forge debug src/SstoreCost.sol --tc "MultipleSstores" --sig "setX()"`
     function setX() public {
-        x += 3;
-        x -= 1;
-        x -= 1;
+        x = 4;
+        x = 3;
+        x = 2;
     }
 }
