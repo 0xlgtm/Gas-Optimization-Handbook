@@ -27,12 +27,12 @@ contract SstoreCostTest is Test {
         zeroToNonZero.setX();
     }
 
-    function test_nonZeroToDiffNonZero() public {
-        nonZeroToDiffNonZero.setX();
-    }
-
     function test_nonZeroToSameNonZero() public {
         nonZeroToSameNonZero.setX();
+    }
+
+    function test_nonZeroToDiffNonZero() public {
+        nonZeroToDiffNonZero.setX();
     }
 
     function test_multipleSstores() public {

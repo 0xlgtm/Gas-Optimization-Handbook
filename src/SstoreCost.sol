@@ -11,16 +11,6 @@ contract ZeroToNonZero {
     }
 }
 
-contract NonZeroToDiffNonZero {
-    uint256 public x = 1;
-
-    // Costs 2.9k + 2.1k gas
-    // 2.1k is for the cold access
-    function setX() public {
-        x = 2;
-    }
-}
-
 contract NonZeroToSameNonZero {
     uint256 public x = 1;
 
@@ -28,6 +18,16 @@ contract NonZeroToSameNonZero {
     // 2.1k is for the cold access
     function setX() public {
         x = 1;
+    }
+}
+
+contract NonZeroToDiffNonZero {
+    uint256 public x = 1;
+
+    // Costs 2.9k + 2.1k gas
+    // 2.1k is for the cold access
+    function setX() public {
+        x = 2;
     }
 }
 
