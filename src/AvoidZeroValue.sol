@@ -2,7 +2,6 @@
 pragma solidity 0.8.22;
 
 contract AvoidZeroValue {
-
     uint256 public x = 10;
     uint256 public statusZero;
     uint256 public statusOne = 1;
@@ -10,7 +9,7 @@ contract AvoidZeroValue {
     error Reentrancy();
 
     modifier reentrancyCheckUnoptimized() {
-        if(statusZero == 1) {
+        if (statusZero == 1) {
             revert Reentrancy();
         }
         statusZero = 1;
@@ -19,7 +18,7 @@ contract AvoidZeroValue {
     }
 
     modifier reentrancyCheckOptimized() {
-        if(statusOne == 2) {
+        if (statusOne == 2) {
             revert Reentrancy();
         }
         statusOne = 2;

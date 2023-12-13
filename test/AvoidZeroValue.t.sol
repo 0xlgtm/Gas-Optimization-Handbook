@@ -19,5 +19,4 @@ contract AvoidZeroValueTest is Test {
     function test_optimizedModifier() public {
         avoidZeroValue.subtractOptimized();
     }
-
 }

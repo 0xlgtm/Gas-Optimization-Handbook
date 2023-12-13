@@ -2,12 +2,7 @@
 pragma solidity 0.8.22;
 
 import {Test} from "forge-std/Test.sol";
-import {
-    ZeroToNonZero,
-    NonZeroToDiffNonZero,
-    NonZeroToSameNonZero,
-    MultipleSstores
-} from "../src/SstoreCost.sol";
+import {ZeroToNonZero, NonZeroToDiffNonZero, NonZeroToSameNonZero, MultipleSstores} from "../src/SstoreCost.sol";
 
 // forge test --match-contract SstoreCostTest --gas-report
 contract SstoreCostTest is Test {
