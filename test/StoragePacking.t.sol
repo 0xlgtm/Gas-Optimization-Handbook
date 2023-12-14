@@ -31,4 +31,11 @@ contract StoragePackingTest is Test {
     function test_getGradesOptimized() public {
         storagePacking.getGradesOptimized(1);
     }
+
+    function test_getGradeB() public {
+        assertEq(
+            storagePacking.gradeForB(1),
+            storagePacking.gradeForBOptimized(1)
+        );
+    }
 }
