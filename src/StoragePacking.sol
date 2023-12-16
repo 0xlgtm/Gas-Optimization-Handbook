@@ -4,7 +4,7 @@ contract StoragePacking {
     // Naive implementation
     // mapping from student id => grade
     mapping(uint256 => uint256) gradeForA;
-    mapping(uint256 => uint256) public gradeForB;  // public so I can compare gas usage for single retrieval 
+    mapping(uint256 => uint256) public gradeForB; // Note: public variable so we can compare gas usage for single retrieval 
     mapping(uint256 => uint256) gradeForC;
     mapping(uint256 => uint256) gradeForD;
 
