@@ -4,7 +4,6 @@ import {Test} from "forge-std/Test.sol";
 import {CheapestPacking} from "../src/CheapestPacking.sol";
 
 contract CheapestPackingTest is Test {
-
     CheapestPacking cp;
 
     function setUp() public {

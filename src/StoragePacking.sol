@@ -4,7 +4,7 @@ contract StoragePacking {
     // Naive implementation
     // mapping from student id => grade
     mapping(uint256 => uint256) gradeForA;
-    mapping(uint256 => uint256) public gradeForB; // Note: public variable so we can compare gas usage for single retrieval 
+    mapping(uint256 => uint256) public gradeForB; // Note: public variable so we can compare gas usage for single retrieval
     mapping(uint256 => uint256) gradeForC;
     mapping(uint256 => uint256) gradeForD;
 
@@ -15,7 +15,7 @@ contract StoragePacking {
         gradeForD[id] = d;
     }
 
-    function getGradesUnoptimized(uint256 id) public view returns(uint256, uint256, uint256, uint256) {
+    function getGradesUnoptimized(uint256 id) public view returns (uint256, uint256, uint256, uint256) {
         return (gradeForA[id], gradeForB[id], gradeForC[id], gradeForD[id]);
     }
 
@@ -28,11 +28,11 @@ contract StoragePacking {
         grades[id] = packedGrades;
     }
 
-    function gradeForBOptimized(uint256 id) public view returns(uint256) {
+    function gradeForBOptimized(uint256 id) public view returns (uint256) {
         return grades[id] >> 128 & type(uint64).max;
     }
 
-    function getGradesOptimized(uint256 id) public view returns(uint256 a, uint256 b, uint256 c, uint256 d) {
+    function getGradesOptimized(uint256 id) public view returns (uint256 a, uint256 b, uint256 c, uint256 d) {
         uint256 packedGrades = grades[id];
         a = packedGrades >> 192;
         b = packedGrades >> 128 & type(uint64).max;
