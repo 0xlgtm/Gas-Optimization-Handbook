@@ -4,6 +4,8 @@
 
 ## Prerequisite Knowledge
 
+## Example
+
 ## How It Works
 
 ## Things To Note
