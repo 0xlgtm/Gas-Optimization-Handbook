@@ -18,9 +18,9 @@ To get started, review the content under the [foundational knowledge](#foundatio
 
 ## Foundation Knowledge
 
-- [What are opcodes?](./src/core/opcodes.md)
-- [What is SLOAD?](./src/core/sload.md)
-- [What is SSTORE?](./src/core/sstore.md)
+- [What are opcodes?](./src/core/opcodes/opcodes.md)
+- [What is SLOAD?](./src/core/sload/sload.md)
+- [What is SSTORE?](./src/core/sstore/sstore.md)
 
 ## Optimizations
 
