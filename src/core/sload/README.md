@@ -14,9 +14,7 @@ Given the index to some position in a contract's storage, the `SLOAD` opcode is 
 
 A cold `SLOAD` is 20 times more costly than a warm `SLOAD` so it is important to understand the distinction between a cold and a warm access if we want to take advantage of this.
 
-### Cold Access vs. Warm Access
-
-Before a transaction execution begins, an empty set called the `accessed_storage_keys` is initialized. Whenever a storage slot of a contract is accessed, the `(address, storage_key)` pair is first check against the `accessed_storage_keys` set. If it is present in the set, it is classified as a warm access. Conversely, if it is not present, it is categorized as a cold access.
+## Example
 
 ```solidity
 pragma solidity 0.8.22;
@@ -40,6 +38,8 @@ contract ColdAndWarmAccess {
 ```
 
 The code snippet above contains two almost identical contracts. The main difference lies in the `getX()` function of the `ColdAndWarmAccess` contract, which executes two `SLOAD` calls to storage slot 0.
+
+Before a transaction execution begins, an empty set called the `accessed_storage_keys` is initialized. Whenever a storage slot of a contract is accessed, the `(address, storage_key)` pair is first check against the `accessed_storage_keys` set. If it is present in the set, it is classified as a warm access. Conversely, if it is not present, it is categorized as a cold access.
 
 The first `SLOAD` for every `(address, storage_key)` pair is always a cold access because the pair has yet to be added to the `accessed_storage_keys` set. Subsequent access to the same pair is considered a warm access. Since the second `getX()` function executes an additional `SLOAD`, we can expect the difference in gas costs between the two functions to be at least 100 gas*.
 
