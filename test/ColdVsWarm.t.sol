@@ -2,7 +2,7 @@
 pragma solidity 0.8.22;
 
 import {Test} from "forge-std/Test.sol";
-import {ColdAccess, ColdAndWarmAccess} from "../src/ColdVsWarm.sol";
+import {ColdAccess, ColdAndWarmAccess} from "../src/core/sload/ColdVsWarm.sol";
 
 // forge test --match-contract ColdVsWarmTest --gas-report
 contract ColdVsWarmTest is Test {
