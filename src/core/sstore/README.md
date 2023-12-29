@@ -75,11 +75,9 @@ contract MultipleSstores {
 }
 ```
 
-The code snippet above contains four contracts, each corresponding to one of the four summarized points. Each contract contains a slightly different `setX()` function, which is responsible for updating the storage variable `x`.
+The code snippet above contains four contracts, each corresponding to one of the four summarized points. Each contract contains a slightly different `setX()` function, which is responsible for updating the storage variable `x`. Executing the `forge test --match-contract SstoreCostTest --gas-report` command reveals gas costs of 22,238, 2,338, 5,138, and 5,138 for the respective functions.
 
-Executing the `forge test --match-contract SstoreCostTest --gas-report` command reveals gas costs of 22,238, 2,338, 5,138, and 5,138 for the respective functions. As expected, the cost of executing the first two `setX()` functions aligns with the summary.
-
-The gas costs for the last two scenarios are identical but for reasons that are not immediately apparent from inspecting the contracts. This is actually due to the compiler's optimizations being enabled. The compiler is able to recognize that only the final assignment holds significance, thereby disregarding the earlier assignments. In essence, it is effectively assigning a value to `x` only once.
+The cost of executing the first two `setX()` functions aligns with the summary. However, the gas costs for the last two scenarios are unexpectedly identical, and this might not be immediately apparent from inspecting the contracts. This outcome is actually a result of the compiler's optimizations being enabled. The compiler is able to recognize that only the final assignment holds significance, thereby disregarding the earlier assignments. In essence, it is effectively assigning a value to `x` only once.
 
 ---
 
