@@ -11,7 +11,9 @@
 
 ## How It Works
 
-Depending on your specific use case, you might not exhaust the entire range of values offered by a `uint256`. As such, you may want to consider packing multiple variables into a single storage slot. This technique allows you to reduce the number of `SSTORE` and `SLOAD` calls required to save / read multiple values. Assume we that have the following problem:
+Depending on your specific use case, you might not exhaust the entire range of values offered by a `uint256`. As such, you may want to consider packing multiple variables into a single storage slot. This technique allows you to reduce the number of `SSTORE` and `SLOAD` calls required to save / read multiple values.
+
+Assume we that have the following problem:
 
 > The students recently completed four different exams and the school wants to store their grades on a smart contract. The maximum grade for each test is 100.
 
