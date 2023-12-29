@@ -1,4 +1,4 @@
-# Hitchhiker's Guide to Gas Optimizations
+# Gas Optimization Handbook
 
 A non-exhaustive guide on the most impactful gas optimization techniques that focuses primarily on reducing the use of the `SSTORE` and `SLOAD` opcodes.
 
