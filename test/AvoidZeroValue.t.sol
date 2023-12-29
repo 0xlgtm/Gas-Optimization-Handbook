@@ -2,7 +2,7 @@
 pragma solidity 0.8.22;
 
 import {Test} from "forge-std/Test.sol";
-import {AvoidZeroValue} from "../src/avoid-zero-value/AvoidZeroValue.sol";
+import {AvoidZeroValue} from "../src/optimizations/avoid-zero-value/AvoidZeroValue.sol";
 
 // forge test --match-contract AvoidZeroValueTest --gas-report
 contract AvoidZeroValueTest is Test {

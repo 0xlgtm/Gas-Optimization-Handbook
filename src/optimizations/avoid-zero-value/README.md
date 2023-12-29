@@ -2,10 +2,10 @@
 
 ## Source
 - [AvoidZeroValue.sol](./AvoidZeroValue.sol)
-- [AvoidZeroValue.t.sol](../../test/AvoidZeroValue.t.sol)
+- [AvoidZeroValue.t.sol](../../../test/AvoidZeroValue.t.sol)
 
 ## Prerequisite Knowledge
-- [SSTORE](../core/sstore/README.md)
+- [SSTORE](../../core/sstore/README.md)
 
 ## How It Works
 
