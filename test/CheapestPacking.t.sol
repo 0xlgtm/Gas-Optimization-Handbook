@@ -1,7 +1,7 @@
 pragma solidity 0.8.22;
 
 import {Test} from "forge-std/Test.sol";
-import {CheapestPacking} from "../src/CheapestPacking.sol";
+import {CheapestPacking} from "../src/optimizations/storage-packing/CheapestPacking.sol";
 
 contract CheapestPackingTest is Test {
     CheapestPacking cp;
