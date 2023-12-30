@@ -9,7 +9,9 @@
 
 ## How It Works
 
-If your smart contract's logic depends on a base case or you anticipate reusing a specific storage slot multiple times, it is more cost-effective to set the storage slot to a non-zero value. This approach helps avoid the additional 17,100 gas cost when executing `SSTORE` since you are writing from a non-zero value to another non-zero value. A typical scenario where the same storage slot is frequently used is in the [re-entrancy check](https://owasp.org/www-project-smart-contract-top-10/2023/en/src/SC01-reentrancy-attacks.html) modifier, making it a suitable candidate for applying this optimization.
+If your smart contract's logic depends on a base case or you anticipate reusing a specific storage slot multiple times, it is more cost-effective to set the storage slot to a non-zero value. This approach helps avoid the additional 17,100 gas cost when executing `SSTORE` since you are writing from a non-zero value to another non-zero value.
+
+A typical scenario where the same storage slot is frequently used is in the [re-entrancy check](https://owasp.org/www-project-smart-contract-top-10/2023/en/src/SC01-reentrancy-attacks.html) modifier, making it a suitable candidate for applying this optimization.
 
 ## Example
 
@@ -50,6 +52,12 @@ contract AvoidZeroValue {
     }
 }
 ```
-In the provided code snippet, there are two variations of the re-entrancy check modifier. The unoptimized `reentrancyCheckUnoptimized()` modifier uses a value of zero, which is the default value for uint256, to indicate the unentered case. On the other hand, the optimized `reentrancyCheckOptimized()` modifier uses a value of one.
+The code snippet above contains two implementations of the re-entrancy check modifier. The unoptimized `reentrancyCheckUnoptimized()` modifier uses a value of zero, which is the default value for `uint256`, to indicate the unentered case. On the other hand, the optimized `reentrancyCheckOptimized()` modifier uses a value of one.
+
+## Explanation
+
+Writing from zero to non-zero costs more than writing from a non-zero to non-zero so the `reentrancyCheckOptimized()` should be the cheaper modifier of the two.
+
+## Gas Savings
 
 Generating the gas report with the `forge test --match-contract AvoidZeroValueTest --gas-report` command reveals gas costs to be 22,021 and 8,328 respectively. As expected, the optimized re-entrancy check modifier is more cost efficient than the unoptimized variant!
