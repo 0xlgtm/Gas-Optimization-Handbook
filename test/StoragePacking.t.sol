@@ -4,7 +4,6 @@ pragma solidity 0.8.22;
 import {Test} from "forge-std/Test.sol";
 import {StoragePacking} from "../src/optimizations/storage-packing/StoragePacking.sol";
 
-
 // forge test --match-contract StoragePackingTest --gas-report
 contract StoragePackingTest is Test {
     StoragePacking public storagePacking;
