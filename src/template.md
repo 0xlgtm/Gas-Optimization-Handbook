@@ -4,8 +4,12 @@
 
 ## Prerequisite Knowledge
 
+## How It Works
+
 ## Example
 
-## How It Works
+## Explanation
+
+## Gas Savings
 
 ## Things To Note
