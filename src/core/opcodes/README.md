@@ -4,9 +4,9 @@
 
 - [Storage.sol](./Storage.sol)
 
-## How It Works
+## Example
 
-Assume that you are given the `Storage` contract.
+Assume that you are given a `Storage` contract and you want to deploy it.
 
 ```solidity
 pragma solidity 0.8.22;
@@ -23,6 +23,8 @@ contract Storage {
     }
 }
 ```
+
+## Explanation
 
 In order to deploy this contract, we must first compile it to bytecode. This can be done with the `forge inspect` command and the `bytecode` field i.e. `forge inspect ./Storage.sol:Storage bytecode`. Executing this command generates the following:
 

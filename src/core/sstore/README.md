@@ -31,8 +31,6 @@ pragma solidity 0.8.22;
 contract ZeroToNonZero {
     uint256 public x;
 
-    // Costs 20k + 2.1k gas
-    // 2.1k is for the cold access
     function setX() public {
         x = 1;
     }
@@ -41,8 +39,6 @@ contract ZeroToNonZero {
 contract NonZeroToSameNonZero {
     uint256 public x = 1;
 
-    // Costs 100 + 2.1k gas
-    // 2.1k is for the cold access
     function setX() public {
         x = 1;
     }
@@ -51,8 +47,6 @@ contract NonZeroToSameNonZero {
 contract NonZeroToDiffNonZero {
     uint256 public x = 1;
 
-    // Costs 2.9k + 2.1k gas
-    // 2.1k is for the cold access
     function setX() public {
         x = 2;
     }
@@ -61,12 +55,6 @@ contract NonZeroToDiffNonZero {
 contract MultipleSstores {
     uint256 public x = 1;
 
-    // Since the compiler's optimization is turned on,
-    // it knows to skip the first 2 assignments.
-    // If you want to see the unoptimized cost
-    // i.e. 2.9k + 2.1k + 100 + 100
-    // turn off optimizations and run the command
-    // `forge debug src/SstoreCost.sol --tc "MultipleSstores" --sig "setX()"`
     function setX() public {
         x = 4;
         x = 3;
@@ -75,9 +63,21 @@ contract MultipleSstores {
 }
 ```
 
-The code snippet above contains four contracts, each corresponding to one of the four summarized points. Each contract contains a slightly different `setX()` function, which is responsible for updating the storage variable `x`. Executing the `forge test --match-contract SstoreCostTest --gas-report` command reveals gas costs of 22,238, 2,338, 5,138, and 5,138 for the respective functions.
+The code snippet above contains four contracts, each corresponding to one of the four summarized points. Each contract contains a slightly different implementation of the `setX()` function, which is responsible for updating the storage variable `x`.
 
-The cost of executing the first two `setX()` functions aligns with the summary. However, the gas costs for the last two scenarios are unexpectedly identical, and this might not be immediately apparent from inspecting the contracts. This outcome is actually a result of the compiler's optimizations being enabled. The compiler is able to recognize that only the final assignment holds significance, thereby disregarding the earlier assignments. In essence, it is effectively assigning a value to `x` only once.
+## Explanation
+
+Given that a zero to non-zero write incurs a cost of 22,100 gas, it is expected that the `setX()` function in the `ZeroToNonZero` contract will be the most expensive. Conversely, a non-zero to the same non-zero write carries a cost of only 2,200 gas, making the `setX()` function in the `NonZeroToSameNonZero` contract the cheapest..
+
+In theory, the `setX()` function in the `MultipleSstores` contract should cost more than the `setX()` function in the `NonZeroToDiffNonZero` contract. This is because the former involves only one `SSTORE`, whereas the latter requires more than one `SSTORE`.
+ 
+## Gas Savings
+
+Executing the `forge test --match-contract SstoreCostTest --gas-report` command reveals gas costs of 22,238, 2,338, 5,138, and 5,138 for the respective functions.
+
+The first two scenarios align with our expectations however, the costs for the remaining two are unexpectedly identical but this might not be immediately apparent from inspecting the contracts.
+
+It is actually a result of the compiler's optimizations being enabled. The compiler is able to recognize that only the final assignment holds significance, thereby disregarding the earlier assignments. In essence, it is effectively assigning a value to `x` only once.
 
 ---
 
