@@ -27,9 +27,8 @@ To get started, review the content under the [foundational knowledge](#foundatio
 - [Avoiding zero values](./src/optimizations/avoid-zero-value/README.md)
 - [Storage packing](./src/optimizations/storage-packing/)
 - [Use constants or immutables for read-only variables](./src/optimizations/constants-and-immutables/README.md)
-- [Use calldata over memory for read-only arguments](./src/optimizations/calldata-vs-memory/README.md)
-<!-- - Cache variables that are used multiple times
-- Prefer mappings over arrays
+- [Cache storage variables](./src/optimizations/caching/README.md)
+<!-- - Prefer mappings over arrays
 - Consider avoiding storage all together
 - Keep strings less than 32 bytes <- is this an mload saving or sload saving?
 - Consider storage pointers over memory <- how does this work? test it! https://www.youtube.com/watch?v=Zi4BANKFNP8
