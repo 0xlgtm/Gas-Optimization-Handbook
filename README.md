@@ -28,8 +28,8 @@ To get started, review the content under the [foundational knowledge](#foundatio
 - [Storage packing](./src/optimizations/storage-packing/)
 - [Use constants or immutables for read-only variables](./src/optimizations/constants-and-immutables/README.md)
 - [Cache storage variables](./src/optimizations/caching/README.md)
-<!-- - Prefer mappings over arrays
-- Consider avoiding storage all together
+- [Prefer mappings over arrays](./src/optimizations/mapping-over-arrays/README.md)
+<!-- - Consider avoiding storage all together
 - Keep strings less than 32 bytes <- is this an mload saving or sload saving?
 - Consider storage pointers over memory <- how does this work? test it! https://www.youtube.com/watch?v=Zi4BANKFNP8
 - Use access lists -->
