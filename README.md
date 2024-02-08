@@ -30,7 +30,7 @@ To get started, review the content under the [foundational knowledge](#foundatio
 - [Cache storage variables](./src/optimizations/caching/README.md)
 - [Prefer mappings over arrays](./src/optimizations/mapping-over-arrays/README.md)
 <!-- - Consider avoiding storage all together
-- Keep strings less than 32 bytes <- is this an mload saving or sload saving?
+- Keep strings less than 32 bytes <- this is sload saving because if strings are less than 31 characters (62 bytes), they're stored with the length (2 bytes) but why does the cost keep going up whenever I add 1 more character e.g. going from 4 characters to 5 characters to 6 characters etc.
 - Consider storage pointers over memory <- how does this work? test it! https://www.youtube.com/watch?v=Zi4BANKFNP8
 - Use access lists -->
 
